@@ -11,3 +11,16 @@ const board = [
     20, null, 21, null, 22, null, 23, null
 ]
 
+// DOM references
+const cells = document.querySelectorAll("td");
+let redsPieces = document.querySelectorAll("p");
+let blacksPieces = document.querySelectorAll("span")
+const redTurnText = document.querySelectorAll(".red-turn-text");
+const blackTurntext = document.querySelectorAll(".black-turn-text");
+const divider = document.querySelector("#divider")
+
+// player properties
+let turn = true;
+let redScore = 12;
+let blackScore = 12;
+let playerPieces;
