@@ -113,4 +113,14 @@ let findPiece = function (pieceId) {
     return board.indexOf(parsed);
 };
 
+// checks if selected piece is a king
+function isPieceKing() {
+    if (document.getElementById(selectedPiece.pieceId).classList.contains("king")) {
+        selectedPiece.isKing = true;
+    } else {
+        selectedPiece.isKing = false;
+    }
+    getAvailableSpaces();
+}
+
 givePiecesEventListeners();
