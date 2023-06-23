@@ -68,4 +68,13 @@ function getPlayerPieces() {
     resetBorders();
 }
 
+// removes possible moves from old selected piece (* this is needed because the user might re-select a piece *)
+function removeCellonclick() {
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].removeAttribute("onclick");
+    }
+}
+
+
+
 givePiecesEventListeners();
