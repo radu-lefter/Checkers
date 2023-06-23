@@ -192,7 +192,7 @@ function checkAvailableJumpSpaces() {
     checkPieceConditions();
 }
 
-// restricts movement if the piece is a king
+// restricts movement if the piece is not a king
 function checkPieceConditions() {
     if (selectedPiece.isKing) {
         givePieceBorder();
@@ -209,6 +209,17 @@ function checkPieceConditions() {
             selectedPiece.eighteenthSpace = false;
         }
         givePieceBorder();
+    }
+}
+
+// gives the piece a green highlight for the user (showing its movable)
+function givePieceBorder() {
+    if (selectedPiece.seventhSpace || selectedPiece.ninthSpace || selectedPiece.fourteenthSpace || selectedPiece.eighteenthSpace
+    || selectedPiece.minusSeventhSpace || selectedPiece.minusNinthSpace || selectedPiece.minusFourteenthSpace || selectedPiece.minusEighteenthSpace) {
+        document.getElementById(selectedPiece.pieceId).style.border = "3px solid green";
+        giveCellsClick();
+    } else {
+        return;
     }
 }
 
