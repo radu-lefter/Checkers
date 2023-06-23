@@ -309,4 +309,18 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
     removeEventListeners();
 }
 
+// removes the 'onClick' event listeners for pieces
+function removeEventListeners() {
+    if (turn) {
+        for (let i = 0; i < redsPieces.length; i++) {
+            redsPieces[i].removeEventListener("click", getPlayerPieces);
+        }
+    } else {
+        for (let i = 0; i < blacksPieces.length; i++) {
+            blacksPieces[i].removeEventListener("click", getPlayerPieces);
+        }
+    }
+    checkForWin();
+}
+
 givePiecesEventListeners();
