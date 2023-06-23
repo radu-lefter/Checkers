@@ -343,4 +343,22 @@ function checkForWin() {
     changePlayer();
 }
 
+// Switches players turn
+function changePlayer() {
+    if (turn) {
+        turn = false;
+        for (let i = 0; i < redTurnText.length; i++) {
+            redTurnText[i].style.color = "lightGrey";
+            blackTurntext[i].style.color = "black";
+        }
+    } else {
+        turn = true;
+        for (let i = 0; i < blackTurntext.length; i++) {
+            blackTurntext[i].style.color = "lightGrey";
+            redTurnText[i].style.color = "black";
+        }
+    }
+    givePiecesEventListeners();
+}
+
 givePiecesEventListeners();
