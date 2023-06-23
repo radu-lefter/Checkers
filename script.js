@@ -46,11 +46,11 @@ let selectedPiece = {
 function givePiecesEventListeners() {
     if (turn) {
         for (let i = 0; i < redsPieces.length; i++) {
-            redsPieces[i].addEventListener("click", getPlayerPieces);
+            redsPieces[i].addEventListener("click", event => {getPlayerPieces(event)});
         }
     } else {
         for (let i = 0; i < blacksPieces.length; i++) {
-            blacksPieces[i].addEventListener("click", getPlayerPieces);
+            blacksPieces[i].addEventListener("click", event => {getPlayerPieces(event)});
         }
     }
 }
@@ -58,14 +58,14 @@ function givePiecesEventListeners() {
 /*---------- Logic ----------*/
 
 // holds the length of the players piece count
-function getPlayerPieces() {
+function getPlayerPieces(event) {
     if (turn) {
         playerPieces = redsPieces;
     } else {
         playerPieces = blacksPieces;
     }
     removeCellonclick();
-    resetBorders();
+    resetBorders(event);
 }
 
 // removes possible moves from old selected piece (* this is needed because the user might re-select a piece *)
@@ -76,12 +76,12 @@ function removeCellonclick() {
 }
 
 // resets borders to default
-function resetBorders() {
+function resetBorders(event) {
     for (let i = 0; i < playerPieces.length; i++) {
         playerPieces[i].style.border = "1px solid white";
     }
     resetSelectedPieceProperties();
-    getSelectedPiece();
+    getSelectedPiece(event);
 }
 
 // resets selected piece properties
@@ -98,5 +98,19 @@ function resetSelectedPieceProperties() {
     selectedPiece.minusFourteenthSpace = false;
     selectedPiece.minusEighteenthSpace = false;
 }
+
+
+// gets ID and index of the board cell its on
+function getSelectedPiece(event) {
+    selectedPiece.pieceId = parseInt(event.target.id);
+    selectedPiece.indexOfBoardPiece = findPiece(selectedPiece.pieceId);
+    isPieceKing();
+}
+
+// parses pieceId's and returns the index of that piece's place on the board
+let findPiece = function (pieceId) {
+    let parsed = parseInt(pieceId);
+    return board.indexOf(parsed);
+};
 
 givePiecesEventListeners();
