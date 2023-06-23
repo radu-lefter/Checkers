@@ -54,3 +54,18 @@ function givePiecesEventListeners() {
         }
     }
 }
+
+/*---------- Logic ----------*/
+
+// holds the length of the players piece count
+function getPlayerPieces() {
+    if (turn) {
+        playerPieces = redsPieces;
+    } else {
+        playerPieces = blacksPieces;
+    }
+    removeCellonclick();
+    resetBorders();
+}
+
+givePiecesEventListeners();
